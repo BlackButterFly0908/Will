@@ -24,13 +24,23 @@
 </audio>
 
 <script>
-  document.addEventListener("click", function() {
-    const audio = document.getElementById("bg-music");
-    if (audio.paused) {
-      audio.play().catch(error => console.log("Playback failed:", error));
-    }
-  }, { once: true }); // Ensures it only triggers once
-</script>
+      document.addEventListener("click", function() {
+        console.log("✅ Click detected on the page.");
+        
+        const audio = document.getElementById("bg-music");
+    
+        if (audio.paused) {
+          console.log("🎵 Attempting to play audio...");
+          audio.play().then(() => {
+            console.log("✅ Audio is playing!");
+          }).catch(error => {
+            console.error("❌ Playback failed:", error);
+          });
+        } else {
+          console.log("🎶 Audio is already playing.");
+        }
+      }, { once: true }); // Ensures it only triggers once
+    </script>
 
 </body>
 </html>
