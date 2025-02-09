@@ -18,20 +18,23 @@
         </div>
     </div>
     <script src="script.js"></script>
-    <audio id="bg-music" autoplay loop style="display: none;">
-        <source src="misteryoso_cup_of_joe.mp3" type="audio/mpeg">
-        Your browser does not support the audio element.
-      </audio>
-      
-      <script>
-        window.onload = function() {
-          const audio = document.getElementById("bg-music");
-      
-          // Try to play the audio (may require user interaction)
-          audio.play().catch(error => {
-            console.log("Autoplay blocked: User interaction needed.");
-          });
-        };
-      </script>
+    <audio id="bg-music" autoplay loop muted style="display: none;">
+    <source src="misteryoso_cup_of_joe.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+</audio>
+
+<script>
+  window.onload = function() {
+    const audio = document.getElementById("bg-music");
+
+    // Start playback muted (to bypass autoplay restrictions)
+    audio.play().then(() => {
+      audio.muted = false; // Unmute after playing
+    }).catch(error => {
+      console.log("Autoplay blocked: User interaction needed.");
+    });
+  };
+</script>
+
 </body>
 </html>
